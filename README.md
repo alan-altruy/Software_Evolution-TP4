@@ -1,5 +1,7 @@
 # Practical Session: Software Reproducibility - Questions
 
+**Note:** *I use A.I. to help me to improve my answers to the questions because the time I have to spend on this practical session is very limited. I also verify the answers I get from A.I. and I make sure they are correct and relevant to the questions. I also try to provide detailed explanations and examples to support my answers.*
+
 ## 1.1 Comparing things
 
 ### 1.1.1 Questions
@@ -85,25 +87,25 @@
 ### 1.2.5 Using Containers
 
 **Q1:** How many parameters should your Monte Carlo application accept to be reproducible at build-time and runtime? Motivate your answer.  
-**Answer:** 
+**Answer:** *Only two parameters should be accepted: the seed for the random number generator and the number of iterations. This is because the seed ensures that the random number generation is reproducible at runtime, while the number of iterations allows for consistent behavior across different runs. By controlling these two parameters, we can ensure that the output is reproducible regardless of when or where the program is executed.*
 
 **Q2:** Build the image using single-stage and multi-stage Containerfile examples, compare and report sizes. Motivate your answer.  
-**Answer:** 
+**Answer:** *When using a single-stage Containerfile, the resulting image is larger (278mo) while using a multi-stage approach results in a smaller image (8mo). This is because the multi-stage approach separates the build environment from the runtime environment, allowing for a smaller final image that only contains the necessary runtime dependencies.*
 
 **Q3:** Build the image using multi-stage Containerfile and compare its size with the binary. Why such a difference? Motivate your answer.  
-**Answer:** 
+**Answer:** *The size of the multi-stage image (8mo) is significantly larger than the binary (16ko) because the image includes not only the compiled binary but also the necessary runtime environment and dependencies required to execute the application. The binary itself is just a small executable file, while the container image contains additional layers and files needed for the application to run properly in a containerized environment.*
 
 **Q4:** In the multi-stage Containerfile, what is the purpose of `COPY --from=build-env`? Is it good or bad? Motivate your answer.  
-**Answer:** 
+**Answer:** *The `COPY --from=build-env` command is used to copy the compiled binary from the build stage (named `build-env`) to the final image. This is a good practice because it allows us to separate the build environment from the runtime environment, resulting in a smaller and more efficient final image. By only copying the necessary files, we can optimize the image size of the final image.*
 
 **Q5 (Challenge):** Work with a partner to build a container image that results in the EXACT same image ID on both machines. What obstacles did you encounter?  
-**Answer:** 
+**Answer:** *It's very difficult because my partner use ARM64 architecture while I use x86_64 architecture, so the resulting image ID will be different due to the differences in the underlying architecture. Additionally, even if we use the same Containerfile and build context, the image ID can still differ due to factors such as timestamps, build environment, and other metadata that may be included in the image.*
 
 **Q6:** When comparing with other students, do you all obtain the same output when running it with the same input parameters?  
-**Answer:** 
+**Answer:** *Yes, when running the container with the same input parameters, we all obtain the same output. This is because the containerization process ensures that the application runs in a consistent environment, regardless of the underlying host system. By using the same image and input parameters, we can achieve reproducibility across different machines.*
 
 **Q7:** If you share the image using `podman save` and `podman load`, what is actually being transferred? Does this ensure reproducibility?  
-**Answer:** 
+**Answer:** *When sharing a container image using `podman save` and `podman load`, the actual files being transferred are the layers of the image, which include the filesystem changes and metadata. This ensures reproducibility as long as the image is not modified after being saved.*
 
 ---
 
