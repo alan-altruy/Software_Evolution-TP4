@@ -56,13 +56,13 @@
 ### 1.2.3 Pseudo-Random Number Generator, With a Seed
 
 **Q1:** If you compile the program multiple times, do you always get the same output? Explain why (not).  
-**Answer:** 
+**Answer:** *Yes, because the seed for the random number generator is set to a fixed value (TIME(NULL)), the output will be the same every time the program is compiled, regardless of when it is compiled.*
 
 **Q2:** If you run the program multiple times (without recompiling), do you always get the same output? Explain why (not).  
-**Answer:** 
+**Answer:** *No, because the seed is set to the current time (TIME(NULL)), the output will differ each time the program is run, as the seed changes with each execution.*
 
 **Q3:** Does this version of the application behave differently (at runtime)? Explain why (not).  
-**Answer:** 
+**Answer:** *Yes, this version of the application behaves differently at runtime because the seed for the random number generator is based on the current time. As a result, each execution will produce a different sequence of random numbers, making the output non-reproducible across different runs.*
 
 ---
 
