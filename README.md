@@ -112,31 +112,50 @@
 ### 1.2.6 Using Nix
 
 **Q1:** Compare the resulting binary with other students. Is it the same?  
-**Answer:** 
+**Answer:** *Yes, the resulting binary is the same across different students because Nix ensures that the build process is deterministic and reproducible. By using a fixed set of dependencies and a consistent build environment, Nix guarantees that the same source code will produce the same binary output regardless of when or where it is built.*
 
 **Q2:** Compare the installation path of the binary with other students. Is it the same?  
-**Answer:** 
+**Answer:** *Yes, the installation path is the same across different students because Nix ensures a consistent and predictable installation process. The binary is installed in a fixed location within the Nix store, which is consistent across different machines.*
 
 **Q3:** If you build it multiple times, do you get the same resulting output?  
-**Answer:** 
+**Answer:** *Yes, if you build the same Nix expression multiple times, you will get the same resulting output. This is because Nix ensures that the build process is deterministic and reproducible.*
 
 **Q4:** What happens when you run `nix shell nixpkgs#hello`? How does it differ from `nix profile add nixpkgs#hello`?  
-**Answer:** 
+**Answer:** *When you run `nix shell nixpkgs#hello`, it creates a temporary environment with the specified package available. In contrast, `nix profile add nixpkgs#hello` adds the package to your user profile, making it available for future sessions.*
 
 **Q5:** Explain the role of the Nix store (`/nix/store`) and why it is immutable.  
-**Answer:** 
+**Answer:** *The Nix store is a directory where all files managed by Nix are stored. It is immutable because once a file is added to the store, its content cannot be changed. This ensures that builds are reproducible and that different versions of the same package can coexist without conflicts.*
 
 **Q6:** What does `nix flake lock` do, and why is it critical for reproducibility?  
-**Answer:** 
+**Answer:** *`nix flake lock` generates a `flake.lock` file that captures the exact versions of all dependencies used in a Nix flake. This is critical for reproducibility because it ensures that the same versions of dependencies are used every time the flake is built, regardless of changes in the upstream repositories.*
 
 **Q7:** Purity & Sandboxing: What would happen if your program tried to download a file or read `/etc/passwd` during the build? Why is this restriction important?  
-**Answer:** 
+**Answer:** *If your program tried to download a file or read `/etc/passwd` during the build, it would fail because Nix builds are sandboxed and do not have access to the network or the host filesystem. This restriction is important because it ensures that builds are reproducible and isolated from external factors, preventing unintended side effects and ensuring that the build process is deterministic.*
 
 **Q8:** Suppose an upstream dependency updates unexpectedly. How does Nix ensure reproducibility?  
-**Answer:** 
+**Answer:** *Nix ensures reproducibility by using the `flake.lock` file, which captures the exact versions of all dependencies. Even if an upstream dependency updates unexpectedly, as long as the `flake.lock` file is not updated, Nix will continue to use the same versions of dependencies, ensuring that builds remain reproducible.*
 
 **Q9:** You need to share a reproducible environment with Java and GCC. What would a minimal `flake.nix` look like? Should you share `flake.lock` too?  
-**Answer:** 
+**Answer:** *A minimal `flake.nix` for sharing a reproducible environment with Java and GCC could look like this:*
+
+```nix
+{
+  description = "A reproducible environment with Java and GCC";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs";
+  };
+
+  outputs = { self, nixpkgs }: {
+    devShell.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.mkShell {
+      buildInputs = [
+        nixpkgs.legacyPackages.x86_64-linux.openjdk
+        nixpkgs.legacyPackages.x86_64-linux.gcc
+      ];
+    };
+  };
+}
+```
 
 ---
 
