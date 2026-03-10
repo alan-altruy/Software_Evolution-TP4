@@ -46,23 +46,23 @@
 ### 1.2.2 Building a Pseudo-Random Number Generator
 
 **Q1:** Compare your output values with those of other students. Are the sequences identical even if compiled on different distributions? Why is this behavior observed with `rand()`?  
-**Answer:** 
+**Answer:** *The output values are not identical across different students, even if compiled on different distributions. This behavior is observed with `rand()` because the seed for the random number generator is typically based on the current time (e.g., using `time(NULL)`), which changes with each execution. As a result, the sequence of random numbers generated will differ each time the program is run, leading to non-reproducible outputs across different runs and different machines.*
 
 **Q2:** If you run the program multiple times (without recompiling), do you always get the same output? Is this “randomness” reproducible?  
-**Answer:** 
+**Answer:** *No, if you run the program multiple times without recompiling, you do not get the same output. This is because the seed for the random number generator is based on the current time, which changes with each execution. Therefore, the "randomness" is not reproducible across different runs of the program.*
 
 ---
 
 ### 1.2.3 Pseudo-Random Number Generator, With a Seed
 
 **Q1:** If you compile the program multiple times, do you always get the same output? Explain why (not).  
-**Answer:** *Yes, because the seed for the random number generator is set to a fixed value (TIME(NULL)), the output will be the same every time the program is compiled, regardless of when it is compiled.*
+**Answer:** *Yes, because the seed for the random number generator is set to a fixed value (argued as a parameter), the output will be the same each time the program is compiled and run, regardless of when it is executed. This is because the sequence of random numbers generated will be the same for the same seed value.*
 
 **Q2:** If you run the program multiple times (without recompiling), do you always get the same output? Explain why (not).  
-**Answer:** *No, because the seed is set to the current time (TIME(NULL)), the output will differ each time the program is run, as the seed changes with each execution.*
+**Answer:** *Yes, if you run the program multiple times without recompiling, you will always get the same output because the seed for the random number generator is fixed. As long as the seed value remains unchanged, the sequence of random numbers generated will be identical across different runs of the program.*
 
 **Q3:** Does this version of the application behave differently (at runtime)? Explain why (not).  
-**Answer:** *Yes, this version of the application behaves differently at runtime because the seed for the random number generator is based on the current time. As a result, each execution will produce a different sequence of random numbers, making the output non-reproducible across different runs.*
+**Answer:** *No, this version of the application behaves the same at runtime because the seed for the random number generator is fixed. As a result, each execution will produce the same sequence of random numbers, making the output reproducible across different runs.*
 
 ---
 
