@@ -68,20 +68,17 @@
 
 ### 1.2.4 Monte Carlo pi Approximation
 
-**Q1:** Implement the π approximation algorithm in `montecarlo-pi.c`, using the current time as the seed for the `rand()` function. Use the `srand()` function for setting this seed. Compile and execute the program to confirm that its intended behaviour is correct. If coding this program is too complex for you, use the provided template.  
-**Answer:** 
-
 **Q2:** What can you notice when you increase the number n of iterations? Does the estimate of π get closer to the actual value? How does the execution time change? Is this behaviour consistent with your expectations?  
-**Answer:** 
+**Answer:** *If I increase the number n of iterations, I notice that the estimate of π gets closer to the actual value. The execution time also increases as n increases, which is consistent with my expectations because more iterations require more computations to be performed.*
 
 **Q3:** Verify if the implementation is reproducible at build time (different compilations produce the same executable). Use SHA-512 checksum. Is it reproducible? Explain why (not).  
-**Answer:** 
+**Answer:** *No, the sha512 checksum of the executable changes with each compilation, indicating that the implementation is not reproducible at build time. This is likely because the timestamp embedded in the binary changes with each compilation, leading to different checksums.*
 
 **Q4:** Verify if the implementation is reproducible at run time (different executions produce the same output). If not, explain why and provide a reproducible version.  
-**Answer:** 
+**Answer:** *No, if I run the program multiple times, I get different outputs each time. This is because the random number generator is seeded with the current time (TIME(NULL)), which changes with each execution. To make it reproducible at runtime, I can set a fixed seed value (e.g., srand(42)) instead of using the current time. This way, the sequence of random numbers generated will be the same for every execution, resulting in the same output.*
 
 **Q5:** Provide a version of the program that is both build-time and run-time reproducible. Explain how you achieved this.  
-**Answer:** 
+**Answer:** *To make the program both build-time and run-time reproducible, I can set a fixed seed for the random number generator and ensure that the compilation process does not include any variable metadata (like timestamps). For example, I can use `srand(42)` to set a fixed seed and remove the __DATE__ and __TIME__ macros from the code. This way, both the build process and the runtime behavior will be consistent and reproducible.*
 
 ---
 
