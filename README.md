@@ -5,14 +5,14 @@
 ### 1.1.1 Questions
 
 **Q1:** How likely is it that two different strings produce an identical cryptographical hash with SHA-256?  
-**Answer:**
+**Answer:** *No, the two different strings are not likely to produce an identical cryptographical hash with SHA-256. The probability of a collision (two different inputs producing the same hash) is extremely low due to the large output space of SHA-256 (2^256 possible hashes). However, it is not impossible, but it would require an astronomical amount of computational power to find such a collision.*
 
 
 **Q2:** Think about how this algorithm works and try it with different inputs. Based on your understanding, try to come up with two different strings that produce the same checksum.  
-**Answer:** 
+**Answer:** *It is not feasible to come up with two different strings that produce the same checksum with SHA-256 due to the algorithm's design and the vast number of possible outputs. The best approach to find a collision would be to use a brute-force method, which is computationally infeasible given the current technology.*
 
 **Q3:** Is it advised to use a tool such as TAR or Gzip to consolidate a filesystem object (e.g., symlink, file, directory) into a single file, then compute the digest of that resulting file?  
-**Answer:** 
+**Answer:** *Yes, it is generally advised to use tools like TAR or Gzip to consolidate filesystem objects into a single file before computing the digest. This ensures that the digest is computed on a consistent representation of the data, making it more reliable for verification purposes.*
 
 ---
 
