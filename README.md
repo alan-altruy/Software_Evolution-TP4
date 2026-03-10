@@ -5,7 +5,8 @@
 ### 1.1.1 Questions
 
 **Q1:** How likely is it that two different strings produce an identical cryptographical hash with SHA-256?  
-**Answer:** 
+**Answer:**
+
 
 **Q2:** Think about how this algorithm works and try it with different inputs. Based on your understanding, try to come up with two different strings that produce the same checksum.  
 **Answer:** 
@@ -20,22 +21,22 @@
 ### 1.2.1 Building and running a trivial C program
 
 **Q1:** Identify the metadata of the compiled binary (e.g., size, permissions, architecture). Does the build process generate any intermediate files?  
-**Answer:** 
+**Answer:** *The compiled binary has a size of 16 KB, permissions set to -rwxr-xr-x, and is built for the x86_64 architecture. The build process do not generate any intermediate files, only the final binary.*
 
 **Q2:** How does your output compare with that of other students?  
-**Answer:** 
+**Answer:** *The outputs are not the same because the timestamp embedded in the binary changes with each compilation.*
 
 **Q3:** If you compile the program multiple times, do you always get the same output? Explain why (not).  
-**Answer:** 
+**Answer:** *No, we do not always get the same output because the timestamp embedded in the binary changes with each compilation, leading to different checksums.*
 
 **Q4:** If you run the program multiple times (without recompiling), do you always get the same output?  
-**Answer:** 
+**Answer:** *Yes, we always get the same output when running the program multiple times without recompiling, as the binary contains the same embedded timestamp.*
 
 **Q5:** If you share the output file with another student, does it work on their machine? What happens if their machine has a different architecture (e.g., Linux (x86) vs. macOS (ARM64))?  
-**Answer:** 
+**Answer:** *If the output file is shared with another student, it may not work on their machine if they have a different architecture. For example, a binary compiled for x86 architecture may not run on an ARM64 machine, and vice versa, due to differences in instruction sets and system calls.*
 
 **Q6:** Is it a good practice to share the binary itself versus sharing the source code? Explain your reasoning.  
-**Answer:** 
+**Answer:** *It is generally better to share the source code rather than the binary. Sharing the source code allows others to compile it on their own machines, ensuring compatibility with their specific architecture and environment. Additionally, sharing the source code promotes transparency and allows others to understand how the program works, make modifications, or fix bugs if necessary. Sharing binaries can lead to issues with compatibility and may not be as secure, as it can be difficult to verify the integrity of a binary file.*
 
 **Q7 (Challenge):** Research the SOURCE_DATE_EPOCH environment variable. Can you find a way to compile hello-world.c such that the timestamp embedded in the binary is always the same, regardless of when you run the compiler?  
 **Answer:** 
